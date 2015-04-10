@@ -1,0 +1,8 @@
+#Configuration for Tofu Push
+#for the moment, requires password and connect_string
+
+#password for user/server specified in connect_string
+password=test_password
+
+#connect_string in form of <user>@<server address>:<server file path>
+connect_string=testuser@server.com:/test/file/path
