@@ -13,11 +13,12 @@
 
 var express = require('express');
 var mongojs = require('mongojs');
+var config = require('./config');
 
 //server variables
-var mongoDBName = "displayTest";
-var mongoCollection = "collectionTest";
-var nodejsPort = "3003";
+var mongoDBName = config.mongoDBName;
+var mongoCollection = config.mongoCollection;
+var nodejsPort = config.nodejsPort;
 
 //app
 var app = express();
@@ -30,9 +31,16 @@ app.get('/display', function(req, res) {
 	var html = "";
 	collection.find( {}, function (err, docs) {
 
-		console.log(docs);
-		html = html + JSON.stringify(docs);
+		// Uncomment the following if you want to print out to console
+		//console.log(docs);
 
+		// Uncomment the following if you want to print ou the entire json.
+		//html = html + JSON.stringify(docs);
+
+		for (i = 0; i < docs.length, i++) {
+			html = html + "<p>" + JSON.stringify(docs[i]);
+		}
+		
 		//page creation
 		var page = html;
 		res.send(page);	
